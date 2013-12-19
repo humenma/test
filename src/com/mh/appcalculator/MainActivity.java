@@ -10,7 +10,7 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	}//this is comment2
+	}//this is comment3
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
