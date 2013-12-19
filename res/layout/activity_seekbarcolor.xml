@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/seek_col_changer"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_weight="30"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seek_red" />
+    
+    <SeekBar
+        android:layout_weight="1"
+        android:id="@+id/red_seek"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="255"
+        android:progress="0" />
+
+    
+    <TextView
+        android:layout_weight="30"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seek_green" />
+    
+    <SeekBar
+        android:layout_weight="1"
+        android:id="@+id/green_seek"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="255"
+        android:progress="0" />
+    
+    
+    <TextView
+        android:layout_weight="30"
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/seek_blue" />
+    
+    <SeekBar
+        android:layout_weight="1"
+        android:id="@+id/blue_seek"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="255"
+        android:progress="0" />
+
+</LinearLayout>
