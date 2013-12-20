@@ -52,6 +52,7 @@ public class MainActivity extends ActionBarActivity {
 					startActivity(intent);
 				}
 				else if(v.equals(btn3)){
+					reqCode = 3;
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
 					startActivity(intent);
 				}
