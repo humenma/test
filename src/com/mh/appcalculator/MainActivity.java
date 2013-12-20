@@ -65,6 +65,16 @@ public class MainActivity extends ActionBarActivity {
 		if(NewActivity.buttCode == 1){
 			String msg = NewActivity.textView.getText().toString();
 			MainActivity.tView.setText(msg);
+		
+			//TO-DO - doladit
+			
+		/*	if(tView != null){
+				String notEmptyMessage = MainActivity.tView.getText().toString();
+				MainActivity.tView.setText(notEmptyMessage + "\n" + msg);
+			}
+		*/
+		
+		
 		} else if(NewActivity.buttCode == 2){
 			String msg = NewActivity.textView.getText().toString();
 			MainActivity.tView.setText(msg);
@@ -74,7 +84,9 @@ public class MainActivity extends ActionBarActivity {
 		}
 		
 	}
-
+	
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
