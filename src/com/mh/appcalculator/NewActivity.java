@@ -23,11 +23,13 @@ public class NewActivity extends ActionBarActivity {
         getSupportActionBar();
         
         if(MainActivity.reqCode == 1){
+        	setContentView(R.layout.activity_new);
         	TextView textView = new TextView(this);
             textView.setTextSize(40);
             textView.setText(message);
             setContentView(textView);
         } else if(MainActivity.reqCode == 2){
+        	setContentView(R.layout.activity_new);
         	Intent intent = getIntent();
     	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
     	    TextView textView = new TextView(this);
