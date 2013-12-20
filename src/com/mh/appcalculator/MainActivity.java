@@ -63,18 +63,16 @@ public class MainActivity extends ActionBarActivity {
 		btn3.setOnClickListener(listener);
 		
 		if(NewActivity.buttCode == 1){
-			String msg = NewActivity.textView.getText().toString();
-			MainActivity.tView.setText(msg);
-		
-			//TO-DO - doladit
 			
-		/*	if(tView != null){
-				String notEmptyMessage = MainActivity.tView.getText().toString();
-				MainActivity.tView.setText(notEmptyMessage + "\n" + msg);
+			//skuska
+			if(tView != null){
+				String msg = NewActivity.textView.getText().toString();
+				MainActivity.tView.append("\n" + msg);
+			} else {
+				String msg = NewActivity.textView.getText().toString();
+				MainActivity.tView.setText(msg);
 			}
-		*/
-		
-		
+			
 		} else if(NewActivity.buttCode == 2){
 			String msg = NewActivity.textView.getText().toString();
 			MainActivity.tView.setText(msg);
