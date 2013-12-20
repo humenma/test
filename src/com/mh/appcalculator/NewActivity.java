@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -15,6 +18,8 @@ public class NewActivity extends ActionBarActivity {
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
+	public static Button butt1, butt2, butt3;
+	TextView textView;
 	
 	@SuppressLint("NewApi")
     @Override
@@ -24,18 +29,16 @@ public class NewActivity extends ActionBarActivity {
         
         if(MainActivity.reqCode == 1){
         	setContentView(R.layout.activity_new);
-        	TextView textView = new TextView(this);
+        	textView = (TextView)findViewById(R.id.textViewNew);
             textView.setTextSize(40);
             textView.setText(message);
-            setContentView(textView);
         } else if(MainActivity.reqCode == 2){
         	setContentView(R.layout.activity_new);
         	Intent intent = getIntent();
     	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-    	    TextView textView = new TextView(this);
+    	    textView = (TextView)findViewById(R.id.textViewNew);
     	    textView.setTextSize(40);
     	    textView.setText(message);
-    	    setContentView(textView);
         } else if(MainActivity.reqCode == 3){
         	setContentView(R.layout.activity_seekbarcolor);
     		
@@ -50,6 +53,25 @@ public class NewActivity extends ActionBarActivity {
     		blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
         }
         
+        butt1 = (Button)findViewById(R.id.button_yes);
+		butt2 = (Button)findViewById(R.id.button_no);
+		butt3 = (Button)findViewById(R.id.button_cancel);
+        
+        OnClickListener buttListener = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+        	
+        };
+
+			butt1.setOnClickListener(buttListener);
+			butt2.setOnClickListener(buttListener);
+			butt3.setOnClickListener(buttListener);
+			
+		
         
     }
 
