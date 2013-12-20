@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 	
-	//public static String msg = NewActivity.textView.getText().toString();
 	public static TextView tView;
 	public static Spinner spinner1;
 	public static Button btn1, btn2, btn3;
@@ -29,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
 		btn1 = (Button)findViewById(R.id.button1);
 		btn2 = (Button)findViewById(R.id.button2);
 		btn3 = (Button)findViewById(R.id.button3);
-		//tView = (TextView)findViewById(R.id.mlTextView);
+		tView = (TextView)findViewById(R.id.mlTextView);
 		
 		
 		OnClickListener listener = new OnClickListener() {
@@ -62,8 +61,17 @@ public class MainActivity extends ActionBarActivity {
 		btn1.setOnClickListener(listener);
 		btn2.setOnClickListener(listener);
 		btn3.setOnClickListener(listener);
-		//tView.setText(msg);
 		
+		if(NewActivity.buttCode == 1){
+			String msg = NewActivity.textView.getText().toString();
+			MainActivity.tView.setText(msg);
+		} else if(NewActivity.buttCode == 2){
+			String msg = NewActivity.textView.getText().toString();
+			MainActivity.tView.setText(msg);
+		} else if(NewActivity.buttCode == 3){
+			String msg = "cancel";
+			MainActivity.tView.setText(msg);
+		}
 		
 	}
 

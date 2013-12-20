@@ -19,7 +19,8 @@ public class NewActivity extends ActionBarActivity {
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
 	public static Button butt1, butt2, butt3;
-	TextView textView;
+	static TextView textView;
+	public static int buttCode = 0;
 	
 	@SuppressLint("NewApi")
     @Override
@@ -62,7 +63,23 @@ public class NewActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				if(v.equals(butt1)){
+					//yes
+					buttCode = 1;
+					Intent intent = new Intent(NewActivity.this, MainActivity.class);
+					startActivity(intent);
+					
+				} else if(v.equals(butt2)){
+					//no
+					buttCode = 2;
+					Intent intent = new Intent(NewActivity.this, MainActivity.class);
+					startActivity(intent);
+				}else if(v.equals(butt3)){
+					//cancel
+					buttCode = 3;
+					Intent intent = new Intent(NewActivity.this, MainActivity.class);
+					startActivity(intent);
+				}
 			}
         	
         };

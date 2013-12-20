@@ -58,14 +58,9 @@
 	    android:id="@+id/mlTextView"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/button3"
-	    android:layout_below="@+id/button3"
-	    android:layout_marginTop="62dp"
-	    android:ems="10"
-	    android:maxLines="10"
-	    android:lines="5" >
-
-	    <requestFocus />
-	</TextView>
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:lines="5"
+	    android:maxLines="10" />
 
 </RelativeLayout>
