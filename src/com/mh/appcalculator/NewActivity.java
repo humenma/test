@@ -54,6 +54,8 @@ public class NewActivity extends ActionBarActivity {
     		blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
         }
         
+        if(MainActivity.reqCode < 3){
+        	
         butt1 = (Button)findViewById(R.id.button_yes);
 		butt2 = (Button)findViewById(R.id.button_no);
 		butt3 = (Button)findViewById(R.id.button_cancel);
@@ -87,7 +89,7 @@ public class NewActivity extends ActionBarActivity {
 			butt1.setOnClickListener(buttListener);
 			butt2.setOnClickListener(buttListener);
 			butt3.setOnClickListener(buttListener);
-			
+        }
 		
         
     }
