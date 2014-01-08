@@ -18,6 +18,7 @@ public class MainActivity extends ActionBarActivity {
 	public static Button btn1, btn2, btn3;
 	public final static String EXTRA_MESSAGE = "com.hm.appcalculator.MESSAGE";
 	public static int reqCode;
+	public static EditText editText;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
 		btn2 = (Button)findViewById(R.id.button2);
 		btn3 = (Button)findViewById(R.id.button3);
 		tView = (TextView)findViewById(R.id.mlTextView);
-		
+		editText = (EditText) findViewById(R.id.editText1);
 		
 		OnClickListener listener = new OnClickListener() {
 			
@@ -44,9 +45,6 @@ public class MainActivity extends ActionBarActivity {
 				}
 				else if(v.equals(btn2)){
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
-					EditText editText = (EditText) findViewById(R.id.editText1);
-					String message = editText.getText().toString();
-					intent.putExtra(EXTRA_MESSAGE, message);
 					reqCode = 2;
 					startActivity(intent);
 				}
@@ -67,10 +65,10 @@ public class MainActivity extends ActionBarActivity {
 			//skuska
 			if(tView != null || !tView.getText().equals("")){
 				String msg = NewActivity.textView.getText().toString();
-				MainActivity.tView.append(msg + "\n" + NewActivity.message);
+				MainActivity.tView.append(msg);
 			} else {
 				String msg = NewActivity.textView.getText().toString();
-				MainActivity.tView.setText(msg + "\n" + NewActivity.message);
+				MainActivity.tView.setText(msg);
 			}
 			
 		} else if(NewActivity.buttCode == 2){

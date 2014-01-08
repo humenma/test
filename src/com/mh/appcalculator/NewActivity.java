@@ -14,7 +14,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class NewActivity extends ActionBarActivity {
-	static String message = String.valueOf(MainActivity.spinner1.getSelectedItem());
+	
+	String message;
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
@@ -30,13 +31,13 @@ public class NewActivity extends ActionBarActivity {
         
         if(MainActivity.reqCode == 1){
         	setContentView(R.layout.activity_new);
+        	message = String.valueOf(MainActivity.spinner1.getSelectedItem());
         	textView = (TextView)findViewById(R.id.textViewNew);
             textView.setTextSize(40);
             textView.setText(message);
         } else if(MainActivity.reqCode == 2){
         	setContentView(R.layout.activity_new);
-        	Intent intent = getIntent();
-    	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        	message = String.valueOf(MainActivity.editText.getText());
     	    textView = (TextView)findViewById(R.id.textViewNew);
     	    textView.setTextSize(40);
     	    textView.setText(message);
