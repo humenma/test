@@ -14,7 +14,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class NewActivity extends ActionBarActivity {
-	String message = String.valueOf(MainActivity.spinner1.getSelectedItem());
+	static String message = String.valueOf(MainActivity.spinner1.getSelectedItem());
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;

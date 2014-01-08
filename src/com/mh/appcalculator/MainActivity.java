@@ -65,12 +65,12 @@ public class MainActivity extends ActionBarActivity {
 		if(NewActivity.buttCode == 1){
 			
 			//skuska
-			if(tView != null){
+			if(tView != null || !tView.getText().equals("")){
 				String msg = NewActivity.textView.getText().toString();
-				MainActivity.tView.append("\n" + msg);
+				MainActivity.tView.append(msg + "\n" + NewActivity.message);
 			} else {
 				String msg = NewActivity.textView.getText().toString();
-				MainActivity.tView.setText(msg);
+				MainActivity.tView.setText(msg + "\n" + NewActivity.message);
 			}
 			
 		} else if(NewActivity.buttCode == 2){
