@@ -18,8 +18,8 @@ public class MainActivity extends ActionBarActivity {
 	public Button btn1, btn2, btn3;
 	public EditText editText;
 	public String msg;
-	public int buttCode = getIntent().getExtras().getInt("BUTT_CODE");
-	public String textView = getIntent().getExtras().getString("TEXT_VIEW");
+	public int buttCode = 0;
+	public String textView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,30 +33,34 @@ public class MainActivity extends ActionBarActivity {
 		tView = (TextView)findViewById(R.id.mlTextView);
 		editText = (EditText) findViewById(R.id.editText1);
 		
-		OnClickListener listener = new OnClickListener() {
-			
+		if(getIntent() != null && getIntent().getExtras() != null){
+			buttCode = getIntent().getExtras().getInt("BUTT_CODE");
+			textView = getIntent().getExtras().getString("TEXT_VIEW");
+		}
 		
+		OnClickListener listener = new OnClickListener() {
+				
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(v.equals(btn1)){
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
 					intent.putExtra("REQ_CODE", 1);
-					intent.putExtra("EDIT_TEXT", editText.getText());
+					intent.putExtra("EDIT_TEXT", editText.getText().toString());
 					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
 				else if(v.equals(btn2)){
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
 					intent.putExtra("REQ_CODE", 2);
-					intent.putExtra("EDIT_TEXT", editText.getText());
+					intent.putExtra("EDIT_TEXT", editText.getText().toString());
 					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
 				else if(v.equals(btn3)){
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
 					intent.putExtra("REQ_CODE", 3);
-					intent.putExtra("EDIT_TEXT", editText.getText());
+					intent.putExtra("EDIT_TEXT", editText.getText().toString());
 					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
@@ -70,12 +74,10 @@ public class MainActivity extends ActionBarActivity {
 		if(buttCode == 1){
 			
 			//skuska
-			if(tView != null || !tView.getText().equals("")){
-				msg = tView.getText().toString();
+			if(tView != null && !tView.getText().equals("")){
 				tView.append(textView);
 			} else {
-				msg = textView;
-				tView.setText(msg);
+				tView.setText(textView);
 			}
 			
 		} else if(buttCode == 2){

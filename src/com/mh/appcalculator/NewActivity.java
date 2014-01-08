@@ -21,15 +21,17 @@ public class NewActivity extends ActionBarActivity {
 	LinearLayout mScreen;
 	public Button butt1, butt2, butt3;
 	public TextView textView;
-	public int reqCode = getIntent().getExtras().getInt("REQ_CODE");
-	public String editText = getIntent().getExtras().getString("EDIT_TEXT");
-	public String spinner1 = getIntent().getExtras().getString("SPINNER");
+	
 	
 	@SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
+        
+        int reqCode = getIntent().getExtras().getInt("REQ_CODE");
+    	String editText = getIntent().getExtras().getString("EDIT_TEXT");
+    	String spinner1 = getIntent().getExtras().getString("SPINNER");
         
         if(reqCode == 1){
         	setContentView(R.layout.activity_new);
@@ -71,7 +73,7 @@ public class NewActivity extends ActionBarActivity {
 					//yes
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
 					intent.putExtra("BUTT_CODE", 1);
-					intent.putExtra("TEXT_VIEW", textView.getText());
+					intent.putExtra("TEXT_VIEW", textView.getText().toString());
 					startActivity(intent);
 					
 				} else if(v.equals(butt2)){
