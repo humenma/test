@@ -13,12 +13,13 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 	
-	public static TextView tView;
-	public static Spinner spinner1;
-	public static Button btn1, btn2, btn3;
-	public static int reqCode;
-	public static EditText editText;
-	public static String msg;
+	public TextView tView;
+	public Spinner spinner1;
+	public Button btn1, btn2, btn3;
+	public EditText editText;
+	public String msg;
+	public int buttCode = getIntent().getExtras().getInt("BUTT_CODE");
+	public String textView = getIntent().getExtras().getString("TEXT_VIEW");
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +41,23 @@ public class MainActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 				if(v.equals(btn1)){
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
-					reqCode = 1;
+					intent.putExtra("REQ_CODE", 1);
+					intent.putExtra("EDIT_TEXT", editText.getText());
+					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
 				else if(v.equals(btn2)){
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
-					reqCode = 2;
+					intent.putExtra("REQ_CODE", 2);
+					intent.putExtra("EDIT_TEXT", editText.getText());
+					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
 				else if(v.equals(btn3)){
-					reqCode = 3;
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
+					intent.putExtra("REQ_CODE", 3);
+					intent.putExtra("EDIT_TEXT", editText.getText());
+					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
 			}
@@ -60,23 +67,23 @@ public class MainActivity extends ActionBarActivity {
 		btn2.setOnClickListener(listener);
 		btn3.setOnClickListener(listener);
 		
-		if(NewActivity.buttCode == 1){
+		if(buttCode == 1){
 			
 			//skuska
 			if(tView != null || !tView.getText().equals("")){
-				msg = MainActivity.tView.getText().toString();
-				MainActivity.tView.append(msg + "\n" + NewActivity.textView.getText().toString());
+				msg = tView.getText().toString();
+				tView.append(textView);
 			} else {
-				msg = NewActivity.textView.getText().toString();
-				MainActivity.tView.setText(msg);
+				msg = textView;
+				tView.setText(msg);
 			}
 			
-		} else if(NewActivity.buttCode == 2){
-			msg = NewActivity.textView.getText().toString();
-			MainActivity.tView.setText(msg);
-		} else if(NewActivity.buttCode == 3){
+		} else if(buttCode == 2){
+			msg = textView;
+			tView.setText(msg);
+		} else if(buttCode == 3){
 			msg = "cancel";
-			MainActivity.tView.setText(msg);
+			tView.setText(msg);
 		}
 		
 	}

@@ -15,13 +15,15 @@ import android.widget.TextView;
 
 public class NewActivity extends ActionBarActivity {
 	
-	public static String message;
+	public String message;
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
-	public static Button butt1, butt2, butt3;
-	static TextView textView;
-	public static int buttCode = 0;
+	public Button butt1, butt2, butt3;
+	public TextView textView;
+	public int reqCode = getIntent().getExtras().getInt("REQ_CODE");
+	public String editText = getIntent().getExtras().getString("EDIT_TEXT");
+	public String spinner1 = getIntent().getExtras().getString("SPINNER");
 	
 	@SuppressLint("NewApi")
     @Override
@@ -29,19 +31,19 @@ public class NewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
         
-        if(MainActivity.reqCode == 1){
+        if(reqCode == 1){
         	setContentView(R.layout.activity_new);
-        	message = String.valueOf(MainActivity.spinner1.getSelectedItem());
+        	message = String.valueOf(spinner1);
         	textView = (TextView)findViewById(R.id.textViewNew);
             textView.setTextSize(40);
             textView.setText(message);
-        } else if(MainActivity.reqCode == 2){
+        } else if(reqCode == 2){
         	setContentView(R.layout.activity_new);
-        	message = String.valueOf(MainActivity.editText.getText());
+        	message = String.valueOf(editText);
     	    textView = (TextView)findViewById(R.id.textViewNew);
     	    textView.setTextSize(40);
     	    textView.setText(message);
-        } else if(MainActivity.reqCode == 3){
+        } else if(reqCode == 3){
         	setContentView(R.layout.activity_seekbarcolor);
     		mScreen = (LinearLayout) findViewById(R.id.seek_col_changer);
     		redSeekBar = (SeekBar) findViewById(R.id.red_seek);
@@ -54,7 +56,7 @@ public class NewActivity extends ActionBarActivity {
     		blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
         }
         
-        if(MainActivity.reqCode < 3){
+        if(reqCode < 3){
         	
         butt1 = (Button)findViewById(R.id.button_yes);
 		butt2 = (Button)findViewById(R.id.button_no);
@@ -67,19 +69,20 @@ public class NewActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 				if(v.equals(butt1)){
 					//yes
-					buttCode = 1;
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
+					intent.putExtra("BUTT_CODE", 1);
+					intent.putExtra("TEXT_VIEW", textView.getText());
 					startActivity(intent);
 					
 				} else if(v.equals(butt2)){
 					//no
-					buttCode = 2;
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
+					intent.putExtra("BUTT_CODE", 2);
 					startActivity(intent);
 				}else if(v.equals(butt3)){
 					//cancel
-					buttCode = 3;
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
+					intent.putExtra("BUTT_CODE", 3);
 					startActivity(intent);
 				}
 			}
