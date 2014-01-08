@@ -8,7 +8,8 @@
         android:id="@+id/textViewNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="10" />
+        android:maxLines="10"
+        android:freezesText="true" />
     
     <Button
         android:id="@+id/button_yes"

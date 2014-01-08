@@ -20,6 +20,7 @@ public class MainActivity extends ActionBarActivity {
 	public String msg;
 	public int buttCode = 0;
 	public String textView;
+	public String msgSaved;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,10 @@ public class MainActivity extends ActionBarActivity {
 		btn3 = (Button)findViewById(R.id.button3);
 		tView = (TextView)findViewById(R.id.mlTextView);
 		editText = (EditText) findViewById(R.id.editText1);
+		
+		//if (savedInstanceState != null){
+		//	tView.setText(savedInstanceState.getString(msgSaved));
+		//	}
 		
 		if(getIntent() != null && getIntent().getExtras() != null){
 			buttCode = getIntent().getExtras().getInt("BUTT_CODE");
@@ -75,7 +80,7 @@ public class MainActivity extends ActionBarActivity {
 			
 			//skuska
 			if(tView != null && !tView.getText().equals("")){
-				tView.append(textView);
+				tView.append(msgSaved + "\n" + textView);
 			} else {
 				tView.setText(textView);
 			}
@@ -89,9 +94,23 @@ public class MainActivity extends ActionBarActivity {
 		}
 		
 	}
-	
-	
-	
+
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+		msgSaved = tView.getText().toString();
+	}
+
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
