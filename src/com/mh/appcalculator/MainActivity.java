@@ -16,9 +16,9 @@ public class MainActivity extends ActionBarActivity {
 	public static TextView tView;
 	public static Spinner spinner1;
 	public static Button btn1, btn2, btn3;
-	public final static String EXTRA_MESSAGE = "com.hm.appcalculator.MESSAGE";
 	public static int reqCode;
 	public static EditText editText;
+	public static String msg;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +64,18 @@ public class MainActivity extends ActionBarActivity {
 			
 			//skuska
 			if(tView != null || !tView.getText().equals("")){
-				String msg = NewActivity.textView.getText().toString();
-				MainActivity.tView.append(msg);
+				msg = MainActivity.tView.getText().toString();
+				MainActivity.tView.append(msg + "\n" + NewActivity.textView.getText().toString());
 			} else {
-				String msg = NewActivity.textView.getText().toString();
+				msg = NewActivity.textView.getText().toString();
 				MainActivity.tView.setText(msg);
 			}
 			
 		} else if(NewActivity.buttCode == 2){
-			String msg = NewActivity.textView.getText().toString();
+			msg = NewActivity.textView.getText().toString();
 			MainActivity.tView.setText(msg);
 		} else if(NewActivity.buttCode == 3){
-			String msg = "cancel";
+			msg = "cancel";
 			MainActivity.tView.setText(msg);
 		}
 		

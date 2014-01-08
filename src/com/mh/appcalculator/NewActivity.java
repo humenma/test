@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 public class NewActivity extends ActionBarActivity {
 	
-	String message;
+	public static String message;
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
@@ -43,7 +43,6 @@ public class NewActivity extends ActionBarActivity {
     	    textView.setText(message);
         } else if(MainActivity.reqCode == 3){
         	setContentView(R.layout.activity_seekbarcolor);
-    		
     		mScreen = (LinearLayout) findViewById(R.id.seek_col_changer);
     		redSeekBar = (SeekBar) findViewById(R.id.red_seek);
     		greenSeekBar = (SeekBar) findViewById(R.id.green_seek);
