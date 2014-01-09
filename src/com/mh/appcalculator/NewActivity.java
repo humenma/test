@@ -79,7 +79,7 @@ public class NewActivity extends ActionBarActivity {
 					//yes
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
 					intent.putExtra("BUTT_CODE", 1);
-					textView2 = (textView + "\n" + tView).toString();
+					textView2 = (textView.getText() + "\n" + tView);
 					intent.putExtra("TEXT_VIEW", textView2.toString());
 					startActivity(intent);
 					
