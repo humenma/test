@@ -1,5 +1,11 @@
 package com.mh.appcalculator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -87,6 +93,8 @@ public class NewActivity extends ActionBarActivity {
 					//no
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
 					intent.putExtra("BUTT_CODE", 2);
+					textView2 = (textView.getText() + "\n" + shuffle(tView));
+					intent.putExtra("TEXT_VIEW", textView2.toString());
 					startActivity(intent);
 				}else if(v.equals(butt3)){
 					//cancel
@@ -135,6 +143,22 @@ private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSe
 		
 		mScreen.setBackgroundColor(0xff000000 + seekR * 0x10000 + seekG * 0x100 + seekB);
 	}
+	
+	private String shuffle(String original){
+		List<Character> textList = new ArrayList<Character>();
+		for (char character : original.toCharArray()){
+			textList.add(character);
+		}
+		Collections.shuffle(textList);
+		StringBuilder shuffledStringBuilder = new StringBuilder(textList.size());
+			for (Character characterObject : textList){
+				shuffledStringBuilder.append(characterObject);
+				}
+
+		return shuffledStringBuilder.toString();
+	}
+	
+	
 	
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

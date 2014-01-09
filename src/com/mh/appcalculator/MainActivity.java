@@ -34,9 +34,6 @@ public class MainActivity extends ActionBarActivity {
 		tView = (TextView)findViewById(R.id.mlTextView);
 		editText = (EditText) findViewById(R.id.editText1);
 		
-		//if (savedInstanceState != null){
-		//	tView.setText(savedInstanceState.getString(msgSaved));
-		//	}
 		
 		if(getIntent() != null && getIntent().getExtras() != null){
 			buttCode = getIntent().getExtras().getInt("BUTT_CODE");
@@ -82,11 +79,9 @@ public class MainActivity extends ActionBarActivity {
 		if(buttCode == 1){
 			tView.setText(textView);
 		} else if(buttCode == 2){
-			msg = textView;
-			tView.setText(msg);
+			tView.setText(textView);
 		} else if(buttCode == 3){
-			msg = "cancel";
-			tView.setText(msg);
+			
 		}
 		
 	}
