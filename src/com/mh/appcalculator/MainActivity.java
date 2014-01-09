@@ -52,6 +52,7 @@ public class MainActivity extends ActionBarActivity {
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
 					intent.putExtra("REQ_CODE", 1);
 					intent.putExtra("EDIT_TEXT", editText.getText().toString());
+					intent.putExtra("T_VIEW", tView.getText().toString());
 					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
@@ -59,6 +60,7 @@ public class MainActivity extends ActionBarActivity {
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
 					intent.putExtra("REQ_CODE", 2);
 					intent.putExtra("EDIT_TEXT", editText.getText().toString());
+					intent.putExtra("T_VIEW", tView.getText().toString());
 					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
@@ -66,6 +68,7 @@ public class MainActivity extends ActionBarActivity {
 					Intent intent = new Intent(MainActivity.this, NewActivity.class);
 					intent.putExtra("REQ_CODE", 3);
 					intent.putExtra("EDIT_TEXT", editText.getText().toString());
+					intent.putExtra("T_VIEW", tView.getText().toString());
 					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
 					startActivity(intent);
 				}
@@ -77,14 +80,7 @@ public class MainActivity extends ActionBarActivity {
 		btn3.setOnClickListener(listener);
 		
 		if(buttCode == 1){
-			
-			//skuska
-			if(tView != null && !tView.getText().equals("")){
-				tView.append(msgSaved + "\n" + textView);
-			} else {
-				tView.setText(textView);
-			}
-			
+			tView.setText(textView);
 		} else if(buttCode == 2){
 			msg = textView;
 			tView.setText(msg);
@@ -93,21 +89,6 @@ public class MainActivity extends ActionBarActivity {
 			tView.setText(msg);
 		}
 		
-	}
-
-
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-		msgSaved = tView.getText().toString();
-	}
-
-
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onRestoreInstanceState(savedInstanceState);
 	}
 
 
