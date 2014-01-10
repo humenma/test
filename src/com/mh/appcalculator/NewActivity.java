@@ -157,8 +157,7 @@ private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSe
 
 		return shuffledStringBuilder.toString();
 	}
-	
-	
+
 	
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
