@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 	
-	public TextView tView;
+	public TextView mainTextView;
 	public Spinner spinner1;
 	public Button btn1, btn2, btn3;
 	public EditText editText;
@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
 		btn1 = (Button)findViewById(R.id.button1);
 		btn2 = (Button)findViewById(R.id.button2);
 		btn3 = (Button)findViewById(R.id.button3);
-		tView = (TextView)findViewById(R.id.mlTextView);
+		mainTextView = (TextView)findViewById(R.id.mlTextView);
 		editText = (EditText) findViewById(R.id.editText1);
 		
 		
@@ -46,28 +46,13 @@ public class MainActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(v.equals(btn1)){
-					Intent intent = new Intent(MainActivity.this, NewActivity.class);
-					intent.putExtra("REQ_CODE", 1);
-					intent.putExtra("EDIT_TEXT", editText.getText().toString());
-					intent.putExtra("T_VIEW", tView.getText().toString());
-					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
-					startActivity(intent);
+					setReqCode(1);
 				}
 				else if(v.equals(btn2)){
-					Intent intent = new Intent(MainActivity.this, NewActivity.class);
-					intent.putExtra("REQ_CODE", 2);
-					intent.putExtra("EDIT_TEXT", editText.getText().toString());
-					intent.putExtra("T_VIEW", tView.getText().toString());
-					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
-					startActivity(intent);
+					setReqCode(2);
 				}
 				else if(v.equals(btn3)){
-					Intent intent = new Intent(MainActivity.this, NewActivity.class);
-					intent.putExtra("REQ_CODE", 3);
-					intent.putExtra("EDIT_TEXT", editText.getText().toString());
-					intent.putExtra("T_VIEW", tView.getText().toString());
-					intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
-					startActivity(intent);
+					setReqCode(3);
 				}
 			}
 		};
@@ -77,15 +62,23 @@ public class MainActivity extends ActionBarActivity {
 		btn3.setOnClickListener(listener);
 		
 		if(buttCode == 1){
-			tView.setText(textView);
+			mainTextView.setText(textView);
 		} else if(buttCode == 2){
-			tView.setText(textView);
+			mainTextView.setText(textView);
 		} else if(buttCode == 3){
-			
+			mainTextView.setText(textView);
 		}
 		
 	}
-
+	
+	public void setReqCode(int code){
+		Intent intent = new Intent(MainActivity.this, NewActivity.class);
+		intent.putExtra("REQ_CODE", code);
+		intent.putExtra("EDIT_TEXT", editText.getText().toString());
+		intent.putExtra("T_VIEW", mainTextView.getText().toString());
+		intent.putExtra("SPINNER", spinner1.getSelectedItem().toString());
+		startActivity(intent);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,8 +1,6 @@
 package com.mh.appcalculator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,8 +24,8 @@ public class NewActivity extends ActionBarActivity {
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
 	public Button butt1, butt2, butt3;
-	public TextView textView;
-	public String tView, textView2;
+	public TextView newTextView;
+	public String fromMainTextView, toMainTextView;
 	
 	
 	@SuppressLint("NewApi")
@@ -37,7 +35,7 @@ public class NewActivity extends ActionBarActivity {
         getSupportActionBar();
         
         if(getIntent() != null && getIntent().getExtras() != null){
-        	tView = getIntent().getExtras().getString("T_VIEW");
+        	fromMainTextView = getIntent().getExtras().getString("T_VIEW");
         	}
         
         int reqCode = getIntent().getExtras().getInt("REQ_CODE");
@@ -48,15 +46,15 @@ public class NewActivity extends ActionBarActivity {
         if(reqCode == 1){
         	setContentView(R.layout.activity_new);
         	message = String.valueOf(spinner1);
-        	textView = (TextView)findViewById(R.id.textViewNew);
-            textView.setTextSize(40);
-            textView.setText(message);
+        	newTextView = (TextView)findViewById(R.id.textViewNew);
+            newTextView.setTextSize(40);
+            newTextView.setText(message);
         } else if(reqCode == 2){
         	setContentView(R.layout.activity_new);
         	message = String.valueOf(editText);
-    	    textView = (TextView)findViewById(R.id.textViewNew);
-    	    textView.setTextSize(40);
-    	    textView.setText(message);
+    	    newTextView = (TextView)findViewById(R.id.textViewNew);
+    	    newTextView.setTextSize(40);
+    	    newTextView.setText(message);
         } else if(reqCode == 3){
         	setContentView(R.layout.activity_seekbarcolor);
     		mScreen = (LinearLayout) findViewById(R.id.seek_col_changer);
@@ -85,21 +83,23 @@ public class NewActivity extends ActionBarActivity {
 					//yes
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
 					intent.putExtra("BUTT_CODE", 1);
-					textView2 = (textView.getText() + "\n" + tView);
-					intent.putExtra("TEXT_VIEW", textView2.toString());
+					toMainTextView = (fromMainTextView + "\n" + newTextView.getText());
+					intent.putExtra("TEXT_VIEW", toMainTextView.toString());
 					startActivity(intent);
 					
 				} else if(v.equals(butt2)){
 					//no
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
 					intent.putExtra("BUTT_CODE", 2);
-					textView2 = (textView.getText() + "\n" + shuffle(tView));
-					intent.putExtra("TEXT_VIEW", textView2.toString());
+					toMainTextView = (fromMainTextView + "\n" + shuffle(newTextView.getText().toString()));
+					intent.putExtra("TEXT_VIEW", toMainTextView.toString());
 					startActivity(intent);
 				}else if(v.equals(butt3)){
 					//cancel
 					Intent intent = new Intent(NewActivity.this, MainActivity.class);
 					intent.putExtra("BUTT_CODE", 3);
+					toMainTextView = (fromMainTextView);
+					intent.putExtra("TEXT_VIEW", toMainTextView.toString());
 					startActivity(intent);
 				}
 			}
