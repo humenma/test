@@ -17,6 +17,7 @@
 	<string name="seek_blue">Blue</string>
 	<string name="btn_yes">Yes</string>
 	<string name="btn_no">No</string>
+	<string name="btn_submit">Submit</string>
 	<string name="question">Proceed ?</string>
 	<string name="btn_cancel">Cancel</string>
 	<string-array name="town_choice">

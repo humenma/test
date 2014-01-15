@@ -20,7 +20,6 @@ public class MainActivity extends ActionBarActivity {
 	public String msg;
 	public int buttCode = 0;
 	public String textView;
-	public String msgSaved;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

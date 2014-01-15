@@ -10,33 +10,13 @@
         android:layout_height="wrap_content"
         android:maxLines="10"
         android:freezesText="true" />
-    
-    <Button
-        android:id="@+id/button_yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/button_no"
-        android:layout_alignParentBottom="true"
-        android:text="@string/btn_yes" />
 
     <Button
-        android:id="@+id/button_no"
+        android:id="@+id/button_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/btn_no" />
-
-    <Button
-        android:id="@+id/button_cancel"
-        android:layout_toRightOf="@+id/button_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/btn_cancel" />
-
-    
-
-
+        android:layout_centerVertical="true"
+        android:text="@string/btn_submit" />
 
 </RelativeLayout>

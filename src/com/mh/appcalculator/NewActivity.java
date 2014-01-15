@@ -5,13 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -23,7 +24,7 @@ public class NewActivity extends ActionBarActivity {
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
-	public Button butt1, butt2, butt3;
+	public Button buttSubmit;
 	public TextView newTextView;
 	public String fromMainTextView, toMainTextView;
 	
@@ -41,7 +42,7 @@ public class NewActivity extends ActionBarActivity {
         int reqCode = getIntent().getExtras().getInt("REQ_CODE");
     	String editText = getIntent().getExtras().getString("EDIT_TEXT");
     	String spinner1 = getIntent().getExtras().getString("SPINNER");
-    	
+
         
         if(reqCode == 1){
         	setContentView(R.layout.activity_new);
@@ -63,52 +64,69 @@ public class NewActivity extends ActionBarActivity {
     		blueSeekBar = (SeekBar) findViewById(R.id.blue_seek);
     		updateBackground();
     		
+    		
+            
+    		
     		redSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
     		greenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
     		blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
         }
         
         if(reqCode < 3){
-        	
-        butt1 = (Button)findViewById(R.id.button_yes);
-		butt2 = (Button)findViewById(R.id.button_no);
-		butt3 = (Button)findViewById(R.id.button_cancel);
         
-        OnClickListener buttListener = new OnClickListener() {
-
+		buttSubmit = (Button)findViewById(R.id.button_submit);
+		
+		buttSubmit.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(v.equals(butt1)){
-					//yes
-					Intent intent = new Intent(NewActivity.this, MainActivity.class);
-					intent.putExtra("BUTT_CODE", 1);
-					toMainTextView = (fromMainTextView + "\n" + newTextView.getText());
-					intent.putExtra("TEXT_VIEW", toMainTextView.toString());
-					startActivity(intent);
+				AlertDialog.Builder builder = new AlertDialog.Builder(NewActivity.this);
+				builder.setTitle("Sumbit text?");
+				builder.setMessage("Are you sure you want to submit this text ?");
+				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					
-				} else if(v.equals(butt2)){
-					//no
-					Intent intent = new Intent(NewActivity.this, MainActivity.class);
-					intent.putExtra("BUTT_CODE", 2);
-					toMainTextView = (fromMainTextView + "\n" + shuffle(newTextView.getText().toString()));
-					intent.putExtra("TEXT_VIEW", toMainTextView.toString());
-					startActivity(intent);
-				}else if(v.equals(butt3)){
-					//cancel
-					Intent intent = new Intent(NewActivity.this, MainActivity.class);
-					intent.putExtra("BUTT_CODE", 3);
-					toMainTextView = (fromMainTextView);
-					intent.putExtra("TEXT_VIEW", toMainTextView.toString());
-					startActivity(intent);
-				}
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// YES
+						Intent intent = new Intent(NewActivity.this, MainActivity.class);
+						intent.putExtra("BUTT_CODE", 1);
+						toMainTextView = (fromMainTextView + "\n" + newTextView.getText());
+						intent.putExtra("TEXT_VIEW", toMainTextView.toString());
+						startActivity(intent);
+					}
+				});
+				
+				builder.setNegativeButton("Shuffle", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// NO
+						Intent intent = new Intent(NewActivity.this, MainActivity.class);
+						intent.putExtra("BUTT_CODE", 2);
+						toMainTextView = (fromMainTextView + "\n" + shuffle(newTextView.getText().toString()));
+						intent.putExtra("TEXT_VIEW", toMainTextView.toString());
+						startActivity(intent);
+					}
+				});
+				
+				builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// CANCEL
+						Intent intent = new Intent(NewActivity.this, MainActivity.class);
+						intent.putExtra("BUTT_CODE", 3);
+						toMainTextView = (fromMainTextView);
+						intent.putExtra("TEXT_VIEW", toMainTextView.toString());
+						startActivity(intent);
+					}
+				});
+				builder.show();
 			}
-        	
-        };
-
-			butt1.setOnClickListener(buttListener);
-			butt2.setOnClickListener(buttListener);
-			butt3.setOnClickListener(buttListener);
+		});
+        
+        
         }
 		
         
