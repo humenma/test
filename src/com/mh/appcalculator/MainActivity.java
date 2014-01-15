@@ -3,6 +3,7 @@ package com.mh.appcalculator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,6 +60,7 @@ public class MainActivity extends ActionBarActivity {
 		btn1.setOnClickListener(listener);
 		btn2.setOnClickListener(listener);
 		btn3.setOnClickListener(listener);
+		mainTextView.setMovementMethod(new ScrollingMovementMethod());
 		
 		if(buttCode == 1){
 			mainTextView.setText(textView);

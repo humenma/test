@@ -59,9 +59,11 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentBottom="true"
+	    android:layout_below="@+id/button3"
 	    android:layout_centerHorizontal="true"
-	    android:singleLine="false" 
-	    android:lines="5"
-	    android:maxLines="10" />
+	    android:maxLines="20"
+	    android:scrollbars="vertical"
+	    android:lines="12"
+	    android:singleLine="false" />
 
 </RelativeLayout>
