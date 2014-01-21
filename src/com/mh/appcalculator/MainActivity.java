@@ -16,7 +16,7 @@ public class MainActivity extends ActionBarActivity {
 	
 	public TextView mainTextView;
 	public Spinner spinner1;
-	public Button btn1, btn2, btn3;
+	public Button btn1, btn2, btn3, btn4;
 	public EditText editText;
 	public String msg;
 	public int buttCode = 0;
@@ -31,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
 		btn1 = (Button)findViewById(R.id.button1);
 		btn2 = (Button)findViewById(R.id.button2);
 		btn3 = (Button)findViewById(R.id.button3);
+		btn4 = (Button)findViewById(R.id.button4);
 		mainTextView = (TextView)findViewById(R.id.mlTextView);
 		editText = (EditText) findViewById(R.id.editText1);
 		
@@ -53,6 +54,10 @@ public class MainActivity extends ActionBarActivity {
 				}
 				else if(v.equals(btn3)){
 					setReqCode(3);
+				} else if(v.equals(btn4)){
+					Intent intent = new Intent(MainActivity.this, NewActivity.class);
+					intent.putExtra("REQ_CODE", 4);
+					startActivity(intent);
 				}
 			}
 		};
@@ -60,6 +65,7 @@ public class MainActivity extends ActionBarActivity {
 		btn1.setOnClickListener(listener);
 		btn2.setOnClickListener(listener);
 		btn3.setOnClickListener(listener);
+		btn4.setOnClickListener(listener);
 		mainTextView.setMovementMethod(new ScrollingMovementMethod());
 		
 		if(buttCode == 1){

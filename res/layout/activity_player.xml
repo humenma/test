@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/playerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/butt_prev"
+        android:layout_alignLeft="@+id/butt_prev"
+        android:layout_alignRight="@+id/butt_next"
+        android:layout_marginBottom="45dp" />
+
+    <Button
+        android:id="@+id/butt_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:text="@string/btn_play" />
+
+    <Button
+        android:id="@+id/butt_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/butt_play"
+        android:layout_marginTop="16dp"
+        android:layout_toLeftOf="@+id/butt_play"
+        android:text="@string/btn_prev" />
+
+    <Button
+        android:id="@+id/butt_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/butt_prev"
+        android:layout_toRightOf="@+id/butt_play"
+        android:text="@string/btn_next" />
+
+    <Button
+        android:id="@+id/butt_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/butt_play"
+        android:layout_toLeftOf="@+id/butt_next"
+        android:text="@string/btn_stop" />
+
+</RelativeLayout>

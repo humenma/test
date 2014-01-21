@@ -25,12 +25,20 @@
 	    android:layout_below="@+id/spinner1"
 	    android:layout_centerHorizontal="true"
 	    android:text="@string/button_start" />
+	
+	<Button
+	    android:id="@+id/button4"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/button1"
+	    android:layout_centerHorizontal="true"
+	    android:text="@string/btn_player" />
 
 	<EditText
 	    android:id="@+id/editText1"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/button1"
+	    android:layout_below="@+id/button4"
 	    android:layout_centerHorizontal="true"
 	    android:layout_marginTop="23dp"
 	    android:inputType="textMultiLine"
@@ -65,5 +73,6 @@
 	    android:scrollbars="vertical"
 	    android:lines="12"
 	    android:singleLine="false" />
+
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.mh.appcalculator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +9,8 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
@@ -24,9 +27,10 @@ public class NewActivity extends ActionBarActivity {
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
-	public Button buttSubmit;
-	public TextView newTextView;
+	public Button buttSubmit, buttPrev, buttPlay, buttNext, buttStop;
+	public TextView newTextView, playerTextView;
 	public String fromMainTextView, toMainTextView;
+	MediaPlayer mediaPlayer = new MediaPlayer();
 	
 	
 	@SuppressLint("NewApi")
@@ -64,13 +68,84 @@ public class NewActivity extends ActionBarActivity {
     		blueSeekBar = (SeekBar) findViewById(R.id.blue_seek);
     		updateBackground();
     		
-    		
-            
-    		
     		redSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
     		greenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
     		blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        } else if(reqCode == 4){
+        	setContentView(R.layout.activity_player);
         }
+        
+        //MediaPlayer Start
+        
+        if(reqCode == 4){
+        	playerTextView = (TextView)findViewById(R.id.playerTextView);
+        	String musicSrc = "/sdcard/Music/";
+        	mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			try {
+				mediaPlayer.setDataSource(musicSrc);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	buttPrev = (Button)findViewById(R.id.butt_prev);
+        	buttPrev.setOnClickListener(new View.OnClickListener() {
+        	
+				@Override
+				public void onClick(View arg0) {
+					// TODO PREVIEVOUS SONG
+					
+				}
+        		
+        	});
+        	
+        	buttPlay = (Button)findViewById(R.id.butt_play);
+        	buttPlay.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					// TODO PLAY SONG
+					mediaPlayer.start();
+				}
+        		
+        	});
+        	
+        	buttNext = (Button)findViewById(R.id.butt_next);
+        	buttNext.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					// TODO NEXT SONG
+					
+				}
+        		
+        	});
+        	
+        	buttStop = (Button)findViewById(R.id.butt_stop);
+        	buttStop.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					// TODO STOP SONG
+					mediaPlayer.stop();
+				}
+        		
+        	});
+        	
+        	
+        	
+        }
+        
+        
         
         if(reqCode < 3){
         
