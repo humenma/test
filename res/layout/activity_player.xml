@@ -1,49 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/playerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/butt_prev"
-        android:layout_alignLeft="@+id/butt_prev"
-        android:layout_alignRight="@+id/butt_next"
-        android:layout_marginBottom="45dp" />
+   <ImageButton
+      android:id="@+id/butt_forward"
+      android:contentDescription="@string/btn_next"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:layout_marginBottom="14dp"
+      android:src="@drawable/ic_action_forward" />
 
-    <Button
-        android:id="@+id/butt_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="138dp"
-        android:text="@string/btn_play" />
+   <ImageButton
+      android:id="@+id/butt_prev"
+      android:contentDescription="@string/btn_prev"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_alignTop="@+id/butt_pause"
+      android:layout_marginLeft="22dp"
+      android:layout_toRightOf="@+id/butt_pause"
+      android:src="@drawable/ic_action_rewind" />
 
-    <Button
-        android:id="@+id/butt_prev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/butt_play"
-        android:layout_marginTop="16dp"
-        android:layout_toLeftOf="@+id/butt_play"
-        android:text="@string/btn_prev" />
+   <ImageButton
+      android:id="@+id/butt_pause"
+      android:contentDescription="@string/btn_pause"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignTop="@+id/butt_play"
+      android:layout_marginLeft="14dp"
+      android:layout_toRightOf="@+id/butt_play"
+      android:src="@drawable/ic_action_pause" />
 
-    <Button
-        android:id="@+id/butt_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/butt_prev"
-        android:layout_toRightOf="@+id/butt_play"
-        android:text="@string/btn_next" />
+   <ImageButton
+      android:id="@+id/butt_play"
+      android:contentDescription="@string/btn_play"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignTop="@+id/butt_forward"
+      android:layout_marginLeft="24dp"
+      android:layout_toRightOf="@+id/butt_forward"
+      android:src="@drawable/ic_action_play" />
 
-    <Button
-        android:id="@+id/butt_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/butt_play"
-        android:layout_toLeftOf="@+id/butt_next"
-        android:text="@string/btn_stop" />
+   <TextView
+      android:id="@+id/now_playing_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignLeft="@+id/butt_forward"
+      android:text="@string/player_now"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
+
+   <ImageView
+      android:id="@+id/imageView1"
+      android:contentDescription="@string/btn_player"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:layout_below="@+id/now_playing_tv"
+      android:src="@drawable/player_default" />
 
 </RelativeLayout>

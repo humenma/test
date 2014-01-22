@@ -17,9 +17,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewActivity extends ActionBarActivity {
 	
@@ -27,8 +29,9 @@ public class NewActivity extends ActionBarActivity {
 	private int seekR, seekG, seekB;
 	SeekBar redSeekBar, greenSeekBar, blueSeekBar;
 	LinearLayout mScreen;
-	public Button buttSubmit, buttPrev, buttPlay, buttNext, buttStop;
-	public TextView newTextView, playerTextView;
+	public Button buttSubmit;
+	public ImageButton buttPrev, buttPlay, buttNext, buttPause;
+	public TextView newTextView;
 	public String fromMainTextView, toMainTextView;
 	MediaPlayer mediaPlayer = new MediaPlayer();
 	
@@ -78,10 +81,10 @@ public class NewActivity extends ActionBarActivity {
         //MediaPlayer Start
         
         if(reqCode == 4){
-        	playerTextView = (TextView)findViewById(R.id.playerTextView);
-        	String musicSrc = "/sdcard/Music/";
+        	
+        	String musicSrc = "/sdcard/Music/Darnell.mp3";
         	mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-			try {
+        	try {
 				mediaPlayer.setDataSource(musicSrc);
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block
@@ -97,9 +100,8 @@ public class NewActivity extends ActionBarActivity {
 				e.printStackTrace();
 			}
         	
-        	buttPrev = (Button)findViewById(R.id.butt_prev);
+        	buttPrev = (ImageButton)findViewById(R.id.butt_prev);
         	buttPrev.setOnClickListener(new View.OnClickListener() {
-        	
 				@Override
 				public void onClick(View arg0) {
 					// TODO PREVIEVOUS SONG
@@ -108,18 +110,21 @@ public class NewActivity extends ActionBarActivity {
         		
         	});
         	
-        	buttPlay = (Button)findViewById(R.id.butt_play);
+        	buttPlay = (ImageButton)findViewById(R.id.butt_play);
         	buttPlay.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View arg0) {
 					// TODO PLAY SONG
-					mediaPlayer.start();
-				}
+					Toast.makeText(getApplicationContext(), "Playing sound", 
+							   Toast.LENGTH_SHORT).show();
+						mediaPlayer.start();
+							      
+							   }
         		
         	});
         	
-        	buttNext = (Button)findViewById(R.id.butt_next);
+        	buttNext = (ImageButton)findViewById(R.id.butt_forward);
         	buttNext.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -127,16 +132,18 @@ public class NewActivity extends ActionBarActivity {
 					// TODO NEXT SONG
 					
 				}
-        		
         	});
         	
-        	buttStop = (Button)findViewById(R.id.butt_stop);
-        	buttStop.setOnClickListener(new View.OnClickListener() {
+        	//button pause
+        	buttPause = (ImageButton)findViewById(R.id.butt_pause);
+        	buttPause.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View arg0) {
-					// TODO STOP SONG
-					mediaPlayer.stop();
+					// TODO PAUSE SONG
+					Toast.makeText(getApplicationContext(), "Pausing sound", 
+						      Toast.LENGTH_SHORT).show();
+						      mediaPlayer.pause();
 				}
         		
         	});
@@ -144,13 +151,11 @@ public class NewActivity extends ActionBarActivity {
         	
         	
         }
-        
-        
+ 
         
         if(reqCode < 3){
         
 		buttSubmit = (Button)findViewById(R.id.button_submit);
-		
 		buttSubmit.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -201,13 +206,16 @@ public class NewActivity extends ActionBarActivity {
 			}
 		});
         
+		
+		
         
         }
 		
         
     }
+	
 
-private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+	private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
 		
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
