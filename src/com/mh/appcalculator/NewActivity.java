@@ -11,9 +11,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +36,7 @@ public class NewActivity extends ActionBarActivity {
 	public ImageButton buttPrev, buttPlay, buttNext, buttPause;
 	public TextView newTextView;
 	public String fromMainTextView, toMainTextView;
-	MediaPlayer mediaPlayer = new MediaPlayer();
+	MediaPlayer mediaPlayer;
 	
 	
 	@SuppressLint("NewApi")
@@ -41,6 +44,8 @@ public class NewActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
+        
+        mediaPlayer = new MediaPlayer();
         
         if(getIntent() != null && getIntent().getExtras() != null){
         	fromMainTextView = getIntent().getExtras().getString("T_VIEW");
@@ -82,10 +87,11 @@ public class NewActivity extends ActionBarActivity {
         
         if(reqCode == 4){
         	
-        	String musicSrc = "/sdcard/Music/Darnell.mp3";
+        	
         	mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         	try {
-				mediaPlayer.setDataSource(musicSrc);
+				mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
+				Log.i("MOJ_TAG", Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -118,10 +124,13 @@ public class NewActivity extends ActionBarActivity {
 					// TODO PLAY SONG
 					Toast.makeText(getApplicationContext(), "Playing sound", 
 							   Toast.LENGTH_SHORT).show();
-						mediaPlayer.start();
-							      
-							   }
-        		
+					mediaPlayer.setOnPreparedListener(new OnPreparedListener(){ 
+						public void onPrepared(MediaPlayer player){
+						player.start();
+						}
+						});
+						mediaPlayer.prepareAsync();
+				}
         	});
         	
         	buttNext = (ImageButton)findViewById(R.id.butt_forward);
@@ -215,6 +224,13 @@ public class NewActivity extends ActionBarActivity {
     }
 	
 
+	@Override
+	public void onDestroy() {
+	super.onDestroy();
+	mediaPlayer.release();
+	mediaPlayer = null;
+	}
+	
 	private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
 		
 		@Override
