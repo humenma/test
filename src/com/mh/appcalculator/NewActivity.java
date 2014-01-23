@@ -1,6 +1,5 @@
 package com.mh.appcalculator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,12 +10,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -44,8 +40,8 @@ public class NewActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
+        mediaPlayer = MediaPlayer.create(NewActivity.this, R.raw.qflash);
         
-        mediaPlayer = new MediaPlayer();
         
         if(getIntent() != null && getIntent().getExtras() != null){
         	fromMainTextView = getIntent().getExtras().getString("T_VIEW");
@@ -90,20 +86,17 @@ public class NewActivity extends ActionBarActivity {
         	
         	mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         	try {
-				mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
-				Log.i("MOJ_TAG", Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
+			//	mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
+			//	Log.i("MOJ_TAG", Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException(e);
 			} catch (SecurityException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException(e);
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException(e);
 			}
         	
         	buttPrev = (ImageButton)findViewById(R.id.butt_prev);
@@ -124,12 +117,17 @@ public class NewActivity extends ActionBarActivity {
 					// TODO PLAY SONG
 					Toast.makeText(getApplicationContext(), "Playing sound", 
 							   Toast.LENGTH_SHORT).show();
-					mediaPlayer.setOnPreparedListener(new OnPreparedListener(){ 
+					mediaPlayer.start();
+					
+					/*
+					 * mediaPlayer.setOnPreparedListener(new OnPreparedListener(){ 
 						public void onPrepared(MediaPlayer player){
 						player.start();
-						}
+							}
 						});
 						mediaPlayer.prepareAsync();
+					 * 
+					 */
 				}
         	});
         	
