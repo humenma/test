@@ -137,6 +137,15 @@ public class NewActivity extends ActionBarActivity {
 						
 						Toast.makeText(getApplicationContext(), "Previous song.", 
 							      Toast.LENGTH_SHORT).show();
+					} else if(currentTrack == 0){
+						mediaPlayer.stop();
+						mediaPlayer.release();
+						currentTrack = tracks.length;
+						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
+						mediaPlayer.start();
+						
+						Toast.makeText(getApplicationContext(), "Previous song.", 
+							      Toast.LENGTH_SHORT).show();
 					}
 				}
         		
@@ -174,6 +183,15 @@ public class NewActivity extends ActionBarActivity {
 						mediaPlayer.stop();
 						mediaPlayer.release();
 						currentTrack++;
+						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
+						mediaPlayer.start();
+						
+						Toast.makeText(getApplicationContext(), "Next song.", 
+							      Toast.LENGTH_SHORT).show();
+					} else if(currentTrack == tracks.length){
+						mediaPlayer.stop();
+						mediaPlayer.release();
+						currentTrack = 0;
 						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
 						mediaPlayer.start();
 						
