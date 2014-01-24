@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
@@ -33,6 +34,8 @@ public class NewActivity extends ActionBarActivity {
 	public TextView newTextView;
 	public String fromMainTextView, toMainTextView;
 	MediaPlayer mediaPlayer;
+	int tracks[] = new int[4];
+	int currentTrack = 0;
 	
 	
 	@SuppressLint("NewApi")
@@ -40,7 +43,12 @@ public class NewActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
-        mediaPlayer = MediaPlayer.create(NewActivity.this, R.raw.qflash);
+  
+        tracks[0] = R.raw.qflash;
+        tracks[1] = R.raw.dio;
+        tracks[2] = R.raw.graveyard;
+        tracks[3] = R.raw.vaso;
+        mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
         
         
         if(getIntent() != null && getIntent().getExtras() != null){
@@ -83,6 +91,22 @@ public class NewActivity extends ActionBarActivity {
         
         if(reqCode == 4){
         	
+        	mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
+				
+				@Override
+				public void onCompletion(MediaPlayer mp) {
+					// TODO Auto-generated method stub
+					mp.release();
+					if(currentTrack < tracks.length){
+						currentTrack++;
+						mp = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
+						mp.setOnCompletionListener(this);
+						mp.start();
+					}
+					
+				}
+			});
+        	
         	
         	mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         	try {
@@ -104,7 +128,14 @@ public class NewActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO PREVIEVOUS SONG
-					
+					if(currentTrack <= tracks.length && currentTrack != 0){
+						currentTrack--;
+						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
+						mediaPlayer.start();
+						
+						Toast.makeText(getApplicationContext(), "Previous song.", 
+							      Toast.LENGTH_SHORT).show();
+					}
 				}
         		
         	});
@@ -115,7 +146,7 @@ public class NewActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO PLAY SONG
-					Toast.makeText(getApplicationContext(), "Playing sound", 
+					Toast.makeText(getApplicationContext(), "Playing sound.", 
 							   Toast.LENGTH_SHORT).show();
 					mediaPlayer.start();
 					
@@ -137,7 +168,14 @@ public class NewActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO NEXT SONG
-					
+					if(currentTrack >= 0 && currentTrack < tracks.length){
+						currentTrack++;
+						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
+						mediaPlayer.start();
+						
+						Toast.makeText(getApplicationContext(), "Next song.", 
+							      Toast.LENGTH_SHORT).show();
+					}
 				}
         	});
         	
@@ -148,7 +186,7 @@ public class NewActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO PAUSE SONG
-					Toast.makeText(getApplicationContext(), "Pausing sound", 
+					Toast.makeText(getApplicationContext(), "Pausing sound.", 
 						      Toast.LENGTH_SHORT).show();
 						      mediaPlayer.pause();
 				}
