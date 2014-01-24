@@ -52,14 +52,4 @@
       android:text="@string/player_now"
       android:textAppearance="?android:attr/textAppearanceMedium" />
 
-   <ImageView
-      android:id="@+id/imageView1"
-      android:contentDescription="@string/btn_player"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentLeft="true"
-      android:layout_below="@+id/now_playing_tv"
-      android:src="@drawable/player_default" />
-
 </RelativeLayout>
