@@ -129,6 +129,8 @@ public class NewActivity extends ActionBarActivity {
 				public void onClick(View arg0) {
 					// TODO PREVIEVOUS SONG
 					if(currentTrack <= tracks.length && currentTrack != 0){
+						mediaPlayer.stop();
+						mediaPlayer.release();
 						currentTrack--;
 						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
 						mediaPlayer.start();
@@ -169,6 +171,8 @@ public class NewActivity extends ActionBarActivity {
 				public void onClick(View arg0) {
 					// TODO NEXT SONG
 					if(currentTrack >= 0 && currentTrack < tracks.length){
+						mediaPlayer.stop();
+						mediaPlayer.release();
 						currentTrack++;
 						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
 						mediaPlayer.start();
