@@ -128,7 +128,7 @@ public class NewActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO PREVIEVOUS SONG
-					if(currentTrack <= tracks.length && currentTrack != 0){
+					if(currentTrack <= tracks.length){
 						mediaPlayer.stop();
 						mediaPlayer.release();
 						if(--currentTrack < 0){
