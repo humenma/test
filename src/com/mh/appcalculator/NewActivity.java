@@ -96,13 +96,7 @@ public class NewActivity extends ActionBarActivity {
 				@Override
 				public void onCompletion(MediaPlayer mp) {
 					// TODO Auto-generated method stub
-					mp.release();
-					if(currentTrack < tracks.length){
-						currentTrack++;
-						mp = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
-						mp.setOnCompletionListener(this);
-						mp.start();
-					}
+					nextSong();
 					
 				}
 			});
@@ -172,18 +166,7 @@ public class NewActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO NEXT SONG
-					if(currentTrack >= 0 && currentTrack < tracks.length){
-						mediaPlayer.stop();
-						mediaPlayer.release();
-						if(++currentTrack == tracks.length){
-							currentTrack = 0;
-						}
-						mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
-						mediaPlayer.start();
-						
-						Toast.makeText(getApplicationContext(), "Next song.", 
-							      Toast.LENGTH_SHORT).show();
-					} 
+					nextSong();
 				}
         	});
         	
@@ -303,6 +286,21 @@ public class NewActivity extends ActionBarActivity {
 		seekB = blueSeekBar.getProgress();
 		
 		mScreen.setBackgroundColor(0xff000000 + seekR * 0x10000 + seekG * 0x100 + seekB);
+	}
+	
+	private void nextSong(){
+		if(currentTrack >= 0 && currentTrack < tracks.length){
+			mediaPlayer.stop();
+			mediaPlayer.release();
+			if(++currentTrack == tracks.length){
+				currentTrack = 0;
+			}
+			mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
+			mediaPlayer.start();
+			
+			Toast.makeText(getApplicationContext(), "Next song.", 
+				      Toast.LENGTH_SHORT).show();
+		} 
 	}
 	
 	private String shuffle(String original){
