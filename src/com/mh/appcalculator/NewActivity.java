@@ -37,7 +37,7 @@ public class NewActivity extends ActionBarActivity {
 	public TextView newTextView;
 	public String fromMainTextView, toMainTextView;
 	MediaPlayer mediaPlayer;
-	Uri tracks[] = new Uri[4];
+	Uri tracks[];
 	int currentTrack = 0;
 	
 	
@@ -51,10 +51,7 @@ public class NewActivity extends ActionBarActivity {
         
         //tracks[0] = R.raw.qflash;
         
-        tracks[0] = setSong("qflash");
-        tracks[1] = setSong("dio");
-        tracks[2] = setSong("graveyard");
-        tracks[3] = setSong("vaso");
+        tracks = scanCard(Environment.getExternalStorageDirectory()).toArray(new Uri[0]);
         mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
         
         
@@ -299,10 +296,6 @@ public class NewActivity extends ActionBarActivity {
 			Toast.makeText(getApplicationContext(), "Next song.", 
 				      Toast.LENGTH_SHORT).show();
 		} 
-	}
-	
-	private Uri setSong(String song){
-		return Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath() + "/MPmusic/" + song + ".mp3"));
 	}
 	
 	private String shuffle(String original){
