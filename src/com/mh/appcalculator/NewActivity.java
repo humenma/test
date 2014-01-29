@@ -1,5 +1,6 @@
 package com.mh.appcalculator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +12,9 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -34,7 +37,7 @@ public class NewActivity extends ActionBarActivity {
 	public TextView newTextView;
 	public String fromMainTextView, toMainTextView;
 	MediaPlayer mediaPlayer;
-	int tracks[] = new int[4];
+	Uri tracks[] = new Uri[4];
 	int currentTrack = 0;
 	
 	
@@ -44,10 +47,12 @@ public class NewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
   
-        tracks[0] = R.raw.qflash;
-        tracks[1] = R.raw.dio;
-        tracks[2] = R.raw.graveyard;
-        tracks[3] = R.raw.vaso;
+        //tracks[0] = R.raw.qflash;
+        
+        tracks[0] = setSong("qflash");
+        tracks[1] = setSong("dio");
+        tracks[2] = setSong("graveyard");
+        tracks[3] = setSong("vaso");
         mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
         
         
@@ -303,6 +308,10 @@ public class NewActivity extends ActionBarActivity {
 		} 
 	}
 	
+	private Uri setSong(String song){
+		return Uri.fromFile(new File(Environment.getExternalStorageDirectory().getPath() + "/MPmusic/" + song + ".mp3"));
+	}
+	
 	private String shuffle(String original){
 		List<Character> textList = new ArrayList<Character>();
 		for (char character : original.toCharArray()){
@@ -316,6 +325,8 @@ public class NewActivity extends ActionBarActivity {
 
 		return shuffledStringBuilder.toString();
 	}
+	
+	
 
 	
     @Override
