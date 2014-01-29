@@ -47,6 +47,8 @@ public class NewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
   
+        scanCard(Environment.getExternalStorageDirectory());
+        
         //tracks[0] = R.raw.qflash;
         
         tracks[0] = setSong("qflash");
@@ -255,6 +257,8 @@ public class NewActivity extends ActionBarActivity {
         
     }
 	
+	
+	
 
 	@Override
 	public void onDestroy() {
@@ -262,6 +266,8 @@ public class NewActivity extends ActionBarActivity {
 	mediaPlayer.release();
 	mediaPlayer = null;
 	}
+	
+	
 	
 	private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
 		
@@ -327,7 +333,23 @@ public class NewActivity extends ActionBarActivity {
 	}
 	
 	
-
+	public List<Uri> scanCard(File dir){
+		String fileSuffix = ".mp3";
+		File listFile[] = dir.listFiles();
+		List<Uri> musicFileList = new ArrayList<Uri>();
+		if (listFile != null){
+			for(int i = 0; i < listFile.length; i++){
+				if (listFile[i].isDirectory()) {
+					scanCard(listFile[i]);
+				} else {
+					if (listFile[i].getName().endsWith(fileSuffix)){
+						System.out.println(listFile[i]);
+					}
+				}
+			}
+		}
+		return musicFileList;
+	}
 	
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
