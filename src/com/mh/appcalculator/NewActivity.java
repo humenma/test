@@ -328,8 +328,10 @@ public class NewActivity extends ActionBarActivity {
 			for(int i = 0; i < listFile.length; i++){
 				if (listFile[i].isDirectory()) {
 					scanCard(listFile[i]);
+					musicFileList.addAll(scanCard(listFile[i]));
 				} else {
 					if (listFile[i].getName().endsWith(fileSuffix)){
+						musicFileList.add(Uri.fromFile(listFile[i]));
 						System.out.println(listFile[i]);
 					}
 				}
