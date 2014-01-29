@@ -110,19 +110,6 @@ public class NewActivity extends ActionBarActivity {
         	
         	
         	mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        	try {
-			//	mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
-			//	Log.i("MOJ_TAG", Environment.getExternalStorageDirectory().getPath() + "/Music/Darnell.mp3");
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				throw new RuntimeException(e);
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				throw new RuntimeException(e);
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				throw new RuntimeException(e);
-			}
         	
         	buttPrev = (ImageButton)findViewById(R.id.butt_prev);
         	buttPrev.setOnClickListener(new View.OnClickListener() {
