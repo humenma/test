@@ -46,12 +46,9 @@ public class NewActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar();
-  
-        scanCard(Environment.getExternalStorageDirectory());
         
-        //tracks[0] = R.raw.qflash;
-        
-        tracks = scanCard(Environment.getExternalStorageDirectory()).toArray(new Uri[0]);
+        List<Uri> trackList = scanCard(Environment.getExternalStorageDirectory());
+        tracks = trackList.toArray(new Uri[trackList.size()]);
         mediaPlayer = MediaPlayer.create(NewActivity.this, tracks[currentTrack]);
         
         
